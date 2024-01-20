@@ -5,6 +5,10 @@ type FormDataType = {
   email: string;
   password: string;
   channel: string;
+  socials: {
+    fb: string;
+    twitter: string;
+  };
 };
 function Youtubeform() {
   const {
@@ -12,7 +16,21 @@ function Youtubeform() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataType>();
+  } = useForm<FormDataType>({
+    defaultValues: async () => {
+      const data = await fetch("http://jsonplaceholder.typicode.com/users/1");
+      const res = await data.json();
+      return {
+        email: res.email,
+        password: "",
+        channel: res.username,
+        socials: {
+          fb: "",
+          twitter: "",
+        },
+      };
+    },
+  });
 
   const onSubmit = (data: FormDataType) => {
     console.log("form submitted", data);
@@ -58,6 +76,24 @@ function Youtubeform() {
           id="channel"
         />
         <p className="text-red-500">{errors.channel?.message}</p>
+
+        <label htmlFor="facebook">Facebook</label>
+        <input
+          className="border p-2 bg-slate-900"
+          type="text"
+          {...register("socials.fb", { required: "Facebook is required" })}
+          id="facebook"
+        />
+        <p className="text-red-500">{errors.socials?.fb?.message}</p>
+
+        <label htmlFor="twitter">Twitter</label>
+        <input
+          className="border p-2 bg-slate-900"
+          type="text"
+          {...register("socials.twitter", { required: "Twitter is required" })}
+          id="channel"
+        />
+        <p className="text-red-500">{errors.socials?.twitter?.message}</p>
 
         <button type="submit" className="bg-slate-500 mt-2 px-3 py-2 ">
           Submit
