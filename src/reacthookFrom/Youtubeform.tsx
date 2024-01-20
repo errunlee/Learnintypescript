@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 type FormDataType = {
@@ -9,6 +9,11 @@ type FormDataType = {
     fb: string;
     twitter: string;
   };
+  phoneNumbers: string[];
+  phNums: {
+    number: string;
+  }[];
+  age: number;
 };
 function Youtubeform() {
   const {
@@ -28,10 +33,17 @@ function Youtubeform() {
           fb: "",
           twitter: "",
         },
+        phoneNumbers: ["", ""],
+        phNums: [{ number: "" }],
+        age: 0,
       };
     },
   });
 
+  const { fields, append } = useFieldArray({
+    control,
+    name: "phNums",
+  });
   const onSubmit = (data: FormDataType) => {
     console.log("form submitted", data);
   };
@@ -95,6 +107,53 @@ function Youtubeform() {
         />
         <p className="text-red-500">{errors.socials?.twitter?.message}</p>
 
+        <label htmlFor="primary-ph">Primary Phone number</label>
+        <input
+          className="border p-2 bg-slate-900"
+          type="text"
+          {...register("phoneNumbers.0", {
+            required: "Primary Phone number is required",
+          })}
+          id="primary-ph"
+        />
+        {/* <p>{errors.phoneNumbers?.0}</p> */}
+        <label htmlFor="secondary-ph">Secondary Phone number</label>
+        <input
+          className="border p-2 bg-slate-900"
+          type="text"
+          {...register("phoneNumbers.2", {
+            required: "Secondary Phone number is required",
+          })}
+          id="primary-ph"
+        />
+
+        <div>
+          {fields.map((field, index) => {
+            return (
+              <div id={field.id}>
+                <input
+                  className="bg-slate-900 my-1 border p-3"
+                  type="text"
+                  {...register(`phNums.${index}.number`)}
+                  id=""
+                />
+              </div>
+            );
+          })}
+        </div>
+        <button onClick={() => append({ number: "" })} type="button">
+          Add new number
+        </button>
+
+        <label htmlFor="age">Age</label>
+        <input
+          className="border p-2 bg-slate-900"
+          type="number"
+          {...register("age", {
+            valueAsNumber: true,
+          })}
+          id="primary-ph"
+        />
         <button type="submit" className="bg-slate-500 mt-2 px-3 py-2 ">
           Submit
         </button>
