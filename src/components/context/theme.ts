@@ -1,10 +1,21 @@
 export const theme = {
   primary: {
-    background: "#121212",
-    color: "white",
+    color: "black",
+    backgroundColor: "white",
   },
   secondary: {
-    background: "white",
-    color: "black",
+    color: "white",
+    backgroundColor: "#121212",
   },
+};
+
+export type themetype = {
+  primary: {
+    color: string;
+    backgroundColor: string;
+  };
+  secondary: {
+    color: string;
+    backgroundColor: string;
+  };
 };
