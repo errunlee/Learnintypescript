@@ -1,10 +1,13 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { validationSchema } from "./Validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormDataType = {
   email: string;
   password: string;
   channel: string;
+  file: File;
   socials: {
     fb: string;
     twitter: string;
@@ -22,11 +25,13 @@ function Youtubeform() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormDataType>({
+    resolver: yupResolver(validationSchema),
     defaultValues: async () => {
       const data = await fetch("http://jsonplaceholder.typicode.com/users/1");
       const res = await data.json();
       return {
         email: res.email,
+        file: null,
         password: "",
         channel: res.username,
         socials: {
@@ -51,7 +56,7 @@ function Youtubeform() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col mx-auto w-1/4 mt-5 border p-2 "
+        className="flex flex-col mx-auto w-1/4 mt-5 border p-2 text-white placeholder-white "
         noValidate
       >
         <label htmlFor="email">Email</label>
@@ -59,23 +64,14 @@ function Youtubeform() {
           className="border p-2 bg-slate-900"
           type="text"
           id="email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email")}
         />
         <p className="text-red-500">{errors.email?.message}</p>
         <label htmlFor="password">Password</label>
         <input
           className="border p-2 bg-slate-900"
           type="password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Must be at least 8 characters long",
-            },
-            validate: (fieldValue) => {
-              return fieldValue.includes("@") || "Invalid Password";
-            },
-          })}
+          {...register("password")}
           id="password"
         />
         <p className="text-red-500">{errors.password?.message}</p>
@@ -84,16 +80,19 @@ function Youtubeform() {
         <input
           className="border p-2 bg-slate-900"
           type="text"
-          {...register("channel", { required: "Channel is required" })}
+          {...register("channel")}
           id="channel"
         />
         <p className="text-red-500">{errors.channel?.message}</p>
+
+        <input type="file" {...register("file")} id="file" />
+        <p className="text-red-500">{errors.file?.message}</p>
 
         <label htmlFor="facebook">Facebook</label>
         <input
           className="border p-2 bg-slate-900"
           type="text"
-          {...register("socials.fb", { required: "Facebook is required" })}
+          {...register("socials.fb")}
           id="facebook"
         />
         <p className="text-red-500">{errors.socials?.fb?.message}</p>
@@ -102,18 +101,17 @@ function Youtubeform() {
         <input
           className="border p-2 bg-slate-900"
           type="text"
-          {...register("socials.twitter", { required: "Twitter is required" })}
+          {...register("socials.twitter")}
           id="channel"
         />
+
         <p className="text-red-500">{errors.socials?.twitter?.message}</p>
 
         <label htmlFor="primary-ph">Primary Phone number</label>
         <input
           className="border p-2 bg-slate-900"
           type="text"
-          {...register("phoneNumbers.0", {
-            required: "Primary Phone number is required",
-          })}
+          {...register("phoneNumbers.0")}
           id="primary-ph"
         />
         {/* <p>{errors.phoneNumbers?.0}</p> */}
@@ -121,9 +119,7 @@ function Youtubeform() {
         <input
           className="border p-2 bg-slate-900"
           type="text"
-          {...register("phoneNumbers.2", {
-            required: "Secondary Phone number is required",
-          })}
+          {...register("phoneNumbers.2")}
           id="primary-ph"
         />
 

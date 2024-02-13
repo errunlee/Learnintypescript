@@ -4,11 +4,13 @@ import App from "./App.tsx";
 import "./index.css";
 import Youtubeform from "./reacthookFrom/Youtubeform.tsx";
 import Fieldarray from "./reacthookFrom/Fieldarray.tsx";
+import LazyImport from "./LazyImport.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     {/* <Youtubeform />
      */}
-    <Fieldarray />
+    {/* <Fieldarray /> */}
+    <LazyImport />
   </React.StrictMode>
 );
