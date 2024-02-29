@@ -2,6 +2,7 @@ import { Suspense, lazy, useRef } from "react";
 import Loading from "./Loading";
 import Page from "./rtk-query/Page";
 import KidneyForm from "./rtk-query/KidneyForm";
+import Pagination from "./pagination/Pagination";
 const Youtubeform = lazy(() => import("./reacthookFrom/Youtubeform"));
 const MyInput = lazy(() => import("./forwardRef/MyInput"));
 
@@ -13,7 +14,8 @@ const LazyImport = () => {
   };
   return (
     <Suspense fallback={<Loading />}>
-      <KidneyForm />
+      {/* <KidneyForm /> */}
+      <Pagination />
       {/* <Page />
       <h1>
         This is by <b>Lazy import</b>
