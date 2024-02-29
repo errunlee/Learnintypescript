@@ -1,0 +1,90 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    },
+    {
+      "id": "6280",
+      "title": "om",
+      "views": "om"
+    },
+    {
+      "id": "7918",
+      "title": "new ",
+      "views": "10009"
+    },
+    {
+      "id": "efb5",
+      "title": "om",
+      "views": "999",
+      "name": "arun"
+    },
+    {
+      "id": "30cc",
+      "title": "",
+      "views": "",
+      "name": "arun"
+    },
+    {
+      "id": "aa03",
+      "title": "arun",
+      "views": "69"
+    },
+    {
+      "id": "8abf",
+      "title": "arun",
+      "views": "69"
+    },
+    {
+      "id": "7fe9",
+      "title": "om",
+      "views": "omomomomom"
+    },
+    {
+      "id": "714c",
+      "title": "are you sure",
+      "views": "yes i am"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "business": [
+    {
+      "sellerName": "Tom Cruise",
+      "receiverName": "Jenna Ortega",
+      "kidneyPrice": 15000000
+    },
+    {
+      "id": "4e09",
+      "sellerName": "Abel Weiss",
+      "kidneyPrice": "148",
+      "receiverName": "Allistair Cooley"
+    },
+    {
+      "id": "d84f",
+      "sellerName": "Riley Osborn",
+      "kidneyPrice": "610",
+      "receiverName": "Kareem Ferrell"
+    }
+  ]
+}

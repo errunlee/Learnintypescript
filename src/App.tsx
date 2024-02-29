@@ -9,6 +9,7 @@ import Status from "./components/Status";
 import Stylee from "./components/Stylee";
 import Login from "./components/Login";
 import Reducer from "./components/Reducer";
+import KidneyForm from "./rtk-query/KidneyForm";
 
 function App() {
   const persons = [
@@ -31,8 +32,8 @@ function App() {
   return (
     <>
       <div>
-        <Great messages={10} isMale={true} thename="Arun" />
-        {/* <Great thename="Zawardooooooooo" /> */}
+        <KidneyForm />
+        {/* <Great messages={10} isMale={true} thename="Arun" />
 
         <Person name={{ first: "arun", last: "khatri" }} />
         <PersonList persons={persons} />
@@ -41,7 +42,7 @@ function App() {
         <Input value={value} setValue={setValue} />
         <Stylee styles={{ border: "2px solid black" }} />
         <Login />
-        <Reducer />
+        <Reducer /> */}
       </div>
     </>
   );

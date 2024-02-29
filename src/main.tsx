@@ -6,11 +6,17 @@ import Youtubeform from "./reacthookFrom/Youtubeform.tsx";
 import Fieldarray from "./reacthookFrom/Fieldarray.tsx";
 import LazyImport from "./LazyImport.tsx";
 
+import { Provider } from "react-redux";
+import { posts } from "./rtk-query/api.ts";
+import { store } from "./rtk-query/store.ts";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     {/* <Youtubeform />
      */}
     {/* <Fieldarray /> */}
-    <LazyImport />
+    <Provider store={store}>
+      <LazyImport />
+    </Provider>
   </React.StrictMode>
 );
